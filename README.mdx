@@ -8,6 +8,11 @@ Chainguard removes that dependency so developers can build and test in any envir
 for specialized systems.  
 
 ---
+## Video Demo
+Watch this video to learn how to give a FIPS demo.
+
+<video src="https://chainguard.wistia.com/medias/tdq63xcqhe" controls="controls" style="max-width: 730px;">
+</video>
 
 ## What this demo shows
 
@@ -41,7 +46,7 @@ into talking about the guardrails Chainguard includes to prevent you from inadve
 5. Run the image: `docker run -ti --rm -e PORT=8080 -p 8080:8080 python-fips-demo:latest`. Explain the command. We're running the image interactively so we can see stdout.
 We're running the application on port `8080` and binding the container's port `8080` to the host's port `8080`.
 and binding the host's port `8080` to the container port `8080`. 
-6. Now, run a command to hit the endpoint: `curl -X POST -d "Hello World!" http://localhost:8080`. You'll get an error:
+6. Now, run a command to hit the endpoint: `curl -X POST -d "Hello World" http://localhost:8080`. You'll get an error:
 ![empty reply from server error](img/fips-empty-reply.png)
 7. Return to the terminal where the container is running and show the error logged on screen. Chainguard's FIPS-compliant Python image was able to detect that the application
 is using non-FIPS-compliant cryptography.
@@ -50,4 +55,4 @@ is using non-FIPS-compliant cryptography.
 `        hash = hashlib.sha256(post_data).hexdigest()`
 9. Build a new image: `docker build -t python-fips-demo-sha256:latest .`
 10. Run the new image: `docker run -ti --rm -e PORT=8080 -p 8080:8080python-fips-demo-sha256:latest`
-11. Hit the endpoint: `curl -X POST -d "Hello World!" http://localhost:8080`. Note that you now get a sha256 hash in return.
+11. Hit the endpoint: `curl -X POST -d "Hello World" http://localhost:8080`. Note that you now get a sha256 hash in return.
