@@ -51,5 +51,5 @@ is using non-FIPS-compliant cryptography.
 8. Open `main.py` and change the cryptography used on line 8 from `md5` to `sha256`. Line 8 should appear as follows:
 `        hash = hashlib.sha256(post_data).hexdigest()`
 9. Build a new image: `docker build -t python-fips-demo-sha256:latest .`
-10. Run the new image: `docker run -ti --rm -e PORT=8080 -p 8080:8080python-fips-demo-sha256:latest`
+10. Run the new image: `docker run -ti --rm -e PORT=8080 -p 8080:8080 python-fips-demo-sha256:latest`
 11. Hit the endpoint: `curl -X POST -d "Hello World" http://localhost:8080`. Note that you now get a sha256 hash in return.
